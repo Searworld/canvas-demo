@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小球运动</title>
+</head>
+<body>
+<canvas id="canvas" style="display: block;margin: 0px auto;border: 1px solid #cccccc"></canvas>
+<script>
+    var ball = {x: 512, y: 100, r: 20, g: 2, vx: -4, vy: -10, color: "#08c"}
+    //球的 横坐标，纵坐标，半径，重力加速度，横向速度（向量），纵向速度（向量）
+    window.onload = function () {
+        var canvas = document.getElementById('canvas')
+        canvas.width = 1024
+        canvas.height = 728
+        var context = canvas.getContext('2d')
+        setInterval(function () {
+                render(context)
+                update()
+            },
+            50
+        )
+    }
+
+    //    改变小球位置
+    function update() {
+        ball.x += ball.vx
+        ball.y += ball.vy
+        ball.vy += ball.g
+        if (ball.y >= 728 - ball.r) {
+            ball.y = 728 - ball.r //先着地
+            ball.vy = -ball.vy * 0.5
+        }
+    }
+
+    //    画出一个球
+    function render(context) {
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height)
+        context.fillStyle = ball.color
+        context.beginPath()
+        context.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI)
+        context.closePath()
+        context.fill()
+    }
+</script>
+</body>
+</html>

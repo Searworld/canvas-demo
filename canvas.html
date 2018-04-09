@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>imooc-canvas</title>
+</head>
+<body>
+  <canvas id="canvas"style="border: 1px solid #cccccc;margin: 50px auto;display: block"></canvas>
+</body>
+<script>
+  window.onload= function () {
+      var canvas = document.getElementById('canvas')
+      canvas.width = 1024
+      canvas.height = 728
+      var context = canvas.getContext('2d')
+      //使用context环境进行绘制
+      context.beginPath()
+      context.moveTo(100,100)
+      context.lineTo(700,700)
+      context.lineTo(100,700)
+      context.lineTo(100,100)
+      //context.fillStyle = '#ff6000' //填充颜色
+      //context.fill() //填充
+      context.lineWidth = 5
+      context.strokeStyle = '#08c' //绘制线条
+      context.stroke() //绘制线条
+      context.closePath()
+      context.beginPath()
+      context.moveTo(200,100)
+      context.lineTo(700,600)
+      context.strokeStyle = '#ff6000'
+      context.stroke()
+      context.closePath()
+  }
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画圆</title>
+</head>
+<body>
+<canvas id="canvas" style="border: 1px solid #cccccc;display: block;margin: 50px auto"></canvas>
+</body>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas')
+        canvas.width = 1024
+        canvas.height = 728
+        var context = canvas.getContext('2d')
+        context.lineWidth = 3
+        context.strokeStyle = '#08c'
+        //context.arc(300, 300, 200, 0, 1 * Math.PI, false) //圆心x,圆心y,半径,弧度绘制开始位置,弧度绘制结束位置,是否为逆时针
+        for (var i = 0; i < 10; i++) {
+            context.beginPath()
+            context.arc(50 + i * 100, 60, 40, 0, 2 * Math.PI * (i + 1) / 10)
+            context.closePath()
+            context.stroke()
+        }
+        for (var i = 0; i < 10; i++) {
+            context.beginPath()
+            context.arc(50 + i * 100, 180, 40, 0, 2 * Math.PI * (i + 1) / 10)
+            context.stroke()
+        }
+        context.fillStyle = '#08c'
+        for (var i = 0; i < 10; i++) {
+            context.beginPath()
+            context.arc(50 + i * 100, 360, 40, 0, 2 * Math.PI * (i + 1) / 10)
+            context.fill()
+        }
+    }
+</script>
+</html>

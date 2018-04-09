@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>星空</title>
+</head>
+<body>
+<canvas id="canvas" style="border: 1px solid #cccccc;margin: 50px auto;display: block;"></canvas>
+</body>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas')
+        canvas.width = 1024
+        canvas.height = 728
+        var context = canvas.getContext("2d")
+        context.fillStyle = "black"
+        context.fillRect(0, 0, canvas.width, canvas.height);
+//        线段交叉头部效果 'bevel'斜接 'round'圆角 'miter' 默认
+        for (var i = 0; i < 100; i++) {
+            var R = Math.random() * 10 + 10
+            var x = Math.random() * canvas.width;
+            var y = Math.random() * canvas.height;
+            var angle = Math.random() * 360
+            drawStar(context, R / 2, R, x, y, angle)
+        }
+    }
+
+    //    环境变量，小圆半径，大圆半径，五角星偏移位置，旋转角度
+    function drawStar(cxt, r, R, x, y, angle) {
+        cxt.beginPath()
+        for (var i = 0; i < 5; i++) {
+            cxt.lineTo(Math.cos((18 + 72 * i - angle) / 180 * Math.PI) * R + x,
+                -Math.sin((18 + 72 * i - angle) / 180 * Math.PI) * R + y);
+            cxt.lineTo(
+                Math.cos((54 + 72 * i - angle) / 180 * Math.PI) * r + x,
+                -Math.sin((54 + 72 * i - angle) / 180 * Math.PI) * r + y)
+        }
+        cxt.closePath()
+        cxt.lineJoin = 'round'
+        cxt.lineWidth = 3
+        cxt.strokeStyle = "#fd5"
+        cxt.fillStyle = "#fb3"
+        cxt.stroke()
+        cxt.fill()
+    }
+</script>
+</html>

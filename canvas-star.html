@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制五角星</title>
+</head>
+<body>
+<canvas id="canvas" style="border: 1px solid #cccccc;margin: 50px auto;display: block"></canvas>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas')
+        canvas.width = 1024
+        canvas.height = 728
+        var context = canvas.getContext("2d")
+        context.strokeStyle = "#08c"
+//        线段交叉头部效果 'bevel'斜接 'round'圆角 'miter' 默认
+        context.lineJoin = 'round'
+        context.lineWidth = 10
+        drawStar(context, 150, 300, 400, 400, 30)
+    }
+
+    //    环境变量，小圆半径，大圆半径，五角星偏移位置，旋转角度
+    function drawStar(context, r, R, x, y, angle) {
+        context.beginPath()
+        for (var i = 0; i < 5; i++) {
+            context.lineTo(Math.cos((18 + 72 * i - angle) / 180 * Math.PI) * R + x,
+                -Math.sin((18 + 72 * i - angle) / 180 * Math.PI) * R + y);
+            context.lineTo(
+                Math.cos((54 + 72 * i - angle) / 180 * Math.PI) * r + x,
+                -Math.sin((54 + 72 * i - angle) / 180 * Math.PI) * r + y)
+        }
+        context.closePath()
+        context.stroke()
+    }
+</script>
+</body>
+</html>
